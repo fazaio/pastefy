@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from 'react';
+import Card from './components/card';
+import Insert from './components/insert'
+import firebase from './firebase';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: []
+    }
+  }
+
+  componentDidMount() {
+    const db = firebase.database().ref('msg');
+
+    db.on('value', (snapshot) => {
+      const comments = snapshot.val();
+      const arr = [];
+      for(const comment in comments) {
+        arr.push({
+          msg: comments[comment].msg,
+          tgl: comments[comment].tgl
+        })
+      };
+      this.setState({ data: arr.reverse() })
+    })
+  }
+
+  render() {
+    return (
+    <div className="bg-gray-100 text-gray-500">
+      <div className="overflow-auto">
+        <div className="float-left text-red-400 p-4 font-bold text-2xl">./PASTE'fy</div>
+        <div className="float-right text-xs py-2 px-4 m-4 shadow bg-white rounded">
+          <Insert />
+        </div>
+      </div>
+      <div className="container mx-auto py-20">
+        {this.state.data.map((row,id) => (<Card key={id} data={row} />))} 
+      </div>
     </div>
   );
+  }
 }
 
 export default App;
