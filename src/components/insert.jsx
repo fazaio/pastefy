@@ -19,11 +19,12 @@ class Insert extends Component{
   }
 
   handleChange(event) {
-    this.setState(prevState => {
-      let data = Object.assign({}, prevState.msg)
-      data.msg = event.target.value
-      return { data }
-    });
+    this.setState(prevState => ({
+      data: {
+        ...prevState.data,
+        msg: event.target.value
+      }
+    }));
   }
 
   add(event) {
