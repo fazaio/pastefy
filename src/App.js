@@ -29,7 +29,7 @@ class App extends Component {
 
   render() {
     return (
-    <div className="bg-gray-100 text-gray-500">
+    <div className="bg-gray-100 min-h-screen text-gray-500">
       <div className="overflow-auto">
         <div className="float-left text-red-400 p-4 font-bold text-2xl">./PASTE'fy</div>
         <div className="float-right text-xs py-2 px-4 m-4 shadow bg-white rounded">
