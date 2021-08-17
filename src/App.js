@@ -19,7 +19,7 @@ class App extends Component {
       const arr = [];
       for(const comment in comments) {
         arr.push({
-          msg: comments[comment].msg,
+          msg: comments[comment].msg, 
           tgl: comments[comment].tgl
         })
       };
