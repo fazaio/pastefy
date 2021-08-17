@@ -10,7 +10,7 @@ class Insert extends Component{
     super(props)
     this.state = {
       data : {
-        msg: 'tes',
+        msg: '',
         tgl: new Date().toString()
       }
     }
@@ -35,10 +35,10 @@ class Insert extends Component{
 
   render() {
     return (
-    <Popup trigger={<button className="button"> + note </button>} modal>
+    <Popup trigger={<button className="button py-2 px-4 m-4 shadow bg-white rounded focus:outline-none"> + note </button>} modal>
     <div class="p-5 overflow-auto">
         <form onSubmit={this.add}>
-          <input value={this.state.data.msg} type="text" className="focus:outline-none border text-gray-500 w-full p-2 rounded" onChange={this.handleChange} />
+          <input value={this.state.data.msg} placeholder="some.text" type="text" className="focus:outline-none border text-gray-500 w-full p-2 rounded" onChange={this.handleChange} />
             <div className="p-2 text-xs text-gray-400">{ this.state.data.tgl }</div>
           <button className="p-2 shadows mt-2 bg-red-500 float-right text-sm rounded text-gray-100">save</button>
         </form>
